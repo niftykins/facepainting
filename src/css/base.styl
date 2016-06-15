@@ -1,0 +1,315 @@
+@import "normalize.css"
+@import "lightbox.css"
+
+// $light = #f7eee7
+// $medium = #894f3a
+// $dark = #4b413b
+// $link = #f5ba61
+
+$light = #EDE7F7
+$medium = #683A89
+$dark = #433B4B
+
+$link = #BE61F5
+$linkDark = $link - 30%
+
+$borderRadius = 4px
+
+@font-face {
+  font-family: 'Varela Round';
+  font-weight: 400;
+  font-style: normal;
+  src: url('../fonts/Varela-Round-regular/Varela-Round-regular.eot');
+  src: url('../fonts/Varela-Round-regular/Varela-Round-regular.eot?#iefix') format('embedded-opentype'),
+       local('Varela Round'),
+       local('Varela-Round-regular'),
+       url('../fonts/Varela-Round-regular/Varela-Round-regular.woff2') format('woff2'),
+       url('../fonts/Varela-Round-regular/Varela-Round-regular.woff') format('woff'),
+       url('../fonts/Varela-Round-regular/Varela-Round-regular.ttf') format('truetype'),
+       url('.../fonts/Varela-Round-regular/Varela-Round-regular.svg#VarelaRound') format('svg');
+}
+
+$clearfix()
+	zoom 1
+
+	&:before
+	&:after
+		content ''
+		display table
+
+	&:after
+		clear both
+
+$fancyfont()
+	font-family 'Varela Round', 'Open Sans', sans-serif
+	font-weight 400 !important
+
+$sizing(n)
+	$width = (100% / n) - (1.15 * 2)
+
+	width $width
+	margin-left 1.15%
+	margin-right 1.15%
+
+$lightContent($mediumHeadings = false)
+	color $dark
+
+	h1, h2, h3, h4, h5, h6
+		color $mediumHeadings ? $medium : $dark
+
+	a
+		color $linkDark
+
+$darkContent()
+	color $light
+	background-color $dark
+
+	a
+		color $link
+
+*
+	box-sizing border-box
+
+body
+	font-family 'Open Sans', sans-serif
+	background-color $light
+
+a
+	text-decoration none
+
+section
+	position relative
+	padding-left 28px
+	padding-right 28px
+	text-align center
+
+	.container
+		max-width 800px
+		margin auto
+		overflow auto
+
+.intro
+	$lightContent(true)
+	padding-top 28px
+	padding-bottom 50px
+
+	.logo
+		max-height 306px
+		max-width 100%
+		border-radius $borderRadius
+
+	h1
+		$fancyfont()
+		font-size 65px
+		margin 16px 0 0
+
+	h2
+		font-weight normal
+		font-size 18px
+		line-height 32px
+
+.image-row
+	$darkContent()
+	padding 50px 0 40px
+
+	.images
+		// controls gap between images
+		font-size 65px
+
+		span
+			display inline-block
+			width 230px
+			height @width
+			border-radius $borderRadius
+			background-size cover
+			background-position center
+			background-repeat no-repeat
+
+.additional
+	$lightContent()
+	padding-top 50px
+	padding-bottom 90px
+
+	h2
+		$fancyfont()
+		font-size 36px
+		margin-top 0
+
+	& > p
+		margin-top 10px
+		margin-bottom 0
+		font-size 18px
+		line-height 30px
+
+		border-bottom 2px solid #362824
+		padding-bottom 28px
+
+	.item
+		$clearfix()
+		margin-top 45px
+		text-align left
+
+		&.right img
+			float right
+			margin-left 50px
+			margin-right 0
+
+		img
+			float left
+			margin-right 50px
+			width 450px
+			height auto
+			border-radius $borderRadius
+
+		h3
+			font-size 24px
+			padding-top 35px
+			margin-top 19.5px
+			margin-bottom 6.5px
+
+			&.padded
+				padding-top 50px
+
+		p
+			font-size 14px
+
+		@media screen and (max-width 800px)
+			text-align center
+
+			img
+				display block
+				float none !important
+				margin 20px auto 0 !important
+
+			h3
+				padding-top 0
+
+.deal
+	$lightContent()
+	padding-top 50px
+	padding-bottom 50px
+
+	h4
+		$fancyfont()
+		margin-top 0
+		margin-bottom 6.5px
+		font-size 36px
+		line-height 46px
+
+	h5
+		font-size 18px
+		line-height 30px
+		font-weight normal
+		margin-top 10px
+		margin-bottom 6.5px
+
+	.steps
+		$clearfix()
+
+	.step
+		$sizing(3)
+		float left
+		display block
+
+		@media screen and (max-width 700px)
+			$sizing(2)
+
+		@media screen and (max-width 500px)
+			$sizing(1)
+
+		img
+			width 146px
+			height @width
+			margin 50px auto 0
+			border-radius $borderRadius
+
+		h6
+			font-size 24px
+			margin-top 19.5px
+			margin-bottom 6.5px
+
+		p
+			margin 0
+			font-size 14px
+			line-height 21px
+
+		a
+			font-weight bold
+
+.contact
+	$lightContent()
+	padding-top 50px
+	padding-bottom 50px
+
+	h4
+		$fancyfont()
+		margin-top 0
+		margin-bottom 6.5px
+		font-size 36px
+		line-height 46px
+
+	h5
+		font-size 18px
+		line-height 30px
+		font-weight normal
+		margin-top 10px
+		margin-bottom 6.5px
+
+	form
+		text-align center
+		width 100%
+		max-width 300px
+		margin 20px auto 0
+
+		.result
+			display none
+			margin-bottom 10px
+			border-radius $borderRadius
+			padding 10px 12px
+			color #fff
+
+			&.success
+			&.error
+				display block
+
+			&.success
+				background-color #81c784
+
+			&.error
+				background-color #f44336
+
+		textarea
+			resize vertical
+			min-height 100px
+
+		input, textarea
+			display block
+			border 1px solid $dark
+			width 100%
+			outline 0
+			margin-bottom 10px
+			font-family 'Open Sans', sans-serif
+			background-color rgba(255, 255, 255, 0.75)
+			border-radius $borderRadius
+
+			&:last-child
+				margin-bottom 0
+
+			&:not([type="submit"])
+				padding 10px 12px
+
+			&[type="submit"]
+				line-height 35px
+				text-align center
+				background-color $medium
+				color $light
+				font-weight bold
+				font-size 14px
+				cursor pointer
+
+				&:hover
+					background-color $medium + 10%
+
+				&.sending
+					cursor initial
+					background-color grey
