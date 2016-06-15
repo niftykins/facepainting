@@ -464,6 +464,20 @@ section .container {
   font-size: 18px;
   line-height: 32px;
 }
+.intro h3 {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 30px;
+  margin-top: 20px;
+}
+.intro li {
+  list-style: none;
+  font-size: 28px;
+  line-height: 48px;
+}
+.intro ul {
+  padding: 0;
+}
 .image-row {
   color: #ede7f7;
   background-color: #433b4b;
