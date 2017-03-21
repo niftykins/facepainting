@@ -261,6 +261,17 @@
 		<script src="js/lightbox.min.js"></script>
 
 		<script>
+			$('a[data-lightbox]').click(function() {
+				var path = this.href.slice(window.location.origin.length);
+
+				ga('send', {
+					hitType: 'event',
+					eventCategory: 'image',
+					eventAction: 'enlarge',
+					eventLabel: path
+				})
+			});
+
 			$('#contact-form').submit(function(e) {
 				e.preventDefault();
 
