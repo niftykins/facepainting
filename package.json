@@ -10,6 +10,7 @@
     "node-notifier": "^4.0.3"
   },
   "scripts": {
-    "push": "git push && git subtree push --prefix dist origin gh-pages"
+    "push": "git push && git subtree push --prefix dist origin gh-pages",
+    "start": "gulp"
   }
 }

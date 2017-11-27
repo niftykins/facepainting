@@ -168,6 +168,20 @@ section
 			margin-left 50px
 			margin-right 0
 
+		.bubbles-heading
+			padding-top 25px
+			margin-top 19.5px
+			margin-bottom 6.5px
+			display flex
+			align-items center
+
+			.pricing-star
+				margin-left 16px
+
+		#bubble-request
+			margin-top 0.75rem
+			max-width 300px
+
 		img
 			float left
 			margin-right 50px
@@ -177,9 +191,6 @@ section
 
 		h3
 			font-size 28px
-			padding-top 25px
-			margin-top 19.5px
-			margin-bottom 6.5px
 
 			&.padded
 				padding-top 50px
@@ -198,6 +209,10 @@ section
 
 			h3
 				padding-top 0
+
+			ul
+				padding-left 0
+				list-style none
 
 .deal
 	$lightContent()
@@ -276,55 +291,134 @@ section
 		max-width 300px
 		margin 20px auto 0
 
-		.result
-			display none
-			margin-bottom 10px
-			border-radius $borderRadius
-			padding 10px 12px
-			color #fff
+form
+	.result
+		display none
+		margin-bottom 10px
+		border-radius $borderRadius
+		padding 10px 12px
+		color #fff
 
-			&.success
-			&.error
-				display block
-
-			&.success
-				background-color #81c784
-
-			&.error
-				background-color #f44336
-
-		textarea
-			resize vertical
-			min-height 100px
-
-		input, textarea
+		&.success
+		&.error
 			display block
-			border 1px solid $dark
-			width 100%
-			outline 0
-			margin-bottom 10px
-			font-family 'Open Sans', sans-serif
-			background-color rgba(255, 255, 255, 0.75)
-			border-radius $borderRadius
 
-			&:last-child
-				margin-bottom 0
+		&.success
+			background-color #81c784
 
-			&:not([type="submit"])
-				padding 10px 12px
+		&.error
+			background-color #f44336
 
-			&[type="submit"]
-				line-height 35px
-				text-align center
-				background-color $medium
-				color $light
-				font-weight bold
-				font-size 14px
-				cursor pointer
+	textarea
+		resize vertical
+		min-height 100px
 
-				&:hover
-					background-color $medium + 10%
+	input, textarea
+		display block
+		border 1px solid $dark
+		width 100%
+		outline 0
+		margin-bottom 10px
+		font-family 'Open Sans', sans-serif
+		background-color rgba(255, 255, 255, 0.75)
+		border-radius $borderRadius
 
-				&.sending
-					cursor initial
-					background-color grey
+		&:last-child
+			margin-bottom 0
+
+		&:not([type="submit"])
+			padding 10px 12px
+
+#bubble-kit-modal
+	position fixed
+	top 0
+	bottom 0
+	left 0
+	right 0
+
+	.overlay
+		position absolute
+		background-color #000
+		opacity 0.45
+		transform translateZ(0)
+		width 100%
+		height 100%
+
+	form
+		transform translate3d(0, 0, 0)
+		backface-visibility hidden
+		overflow auto
+		border-radius $borderRadius
+		margin 5% auto
+		background-color $light
+		padding 1.5rem 2rem
+		text-align center
+		width 95%
+		max-height 90%
+		max-width calc(300px + 4rem)
+
+	.bubble-close-modal
+		padding 0.35rem 0.75rem
+		text-decoration underline
+		color grey
+		cursor pointer
+		display table
+		margin 0 auto
+
+.button
+	display block
+	border 1px solid $dark
+	width 100%
+	outline 0
+	font-family 'Open Sans', sans-serif
+	border-radius $borderRadius
+	line-height 35px
+	text-align center
+	background-color $medium
+	color $light
+	font-weight bold
+	font-size 14px
+	cursor pointer
+
+	&:hover
+		background-color $medium + 10%
+
+	&.sending
+		cursor initial
+		background-color grey
+
+.pricing-star
+	position relative
+	width 40px
+	height @width
+	text-align center
+
+	.price
+		position absolute
+		left 50%
+		top 50%
+		transform translate(-50%, -50%)
+		color white
+		font-size 18px
+
+	.star
+		position relative
+		width @width
+		height @height
+
+		&:before,
+		&:after
+			display block
+			content ''
+			position absolute
+			top 0
+			bottom 0
+			left 0
+			right 0
+			background $medium
+
+		&:before
+			transform rotate(155deg)
+
+		&:after
+			transform rotate(20deg)
