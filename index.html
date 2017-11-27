@@ -38,7 +38,7 @@
 				<h1>Face Painting Plus Perth</h1>
 
 				<h2>
-					Welcome to Face Painting Plus Perth, over the last 6 years we have traveled from Mandurah to Two Rocks putting smiles on kids faces everywhere. We cater from small family events to large commercial and fund-raising events thrown in also.
+					Welcome to Face Painting Plus Perth, over the last 6 years we have traveled from Mandurah to Two Rocks putting smiles on kids faces everywhere. We cater from small family events to large commercial and fund-raising events.
 				</h2>
 
 				<ul>
@@ -86,9 +86,9 @@
 				<h4>Current Special</h4>
 
 				<h5>
-					2 hour combo for upto 18 children (can re-quote for larger numbers)
+					2 hour combo for up to 20 children (can re-quote for larger numbers)
 					<br />
-					2 for $150 or 3 for $180
+					choose any 2 for $165 or 3 for $190
 				</h5>
 
 				<div class="steps">
@@ -147,18 +147,33 @@
 				<div class="item right">
 					<img src="images/painting/bubbles.jpg" />
 
-					<h3>Bubble kits</h3>
+					<div class="bubbles-heading">
+						<h3>Bubble kits</h3>
+
+						<div class="pricing-star">
+							<div class="star"></div>
+
+							<div class="price">
+								$48
+							</div>
+						</div>
+					</div>
 					<p>
 						Each kit includes:
 
 						<ul>
 							<li>4ltrs of bubble solution</li>
 							<li>2x Bubble wands</li>
-							<li>Bucket with lid</li>
-							<li>Wand repair kit</li>
+							<li>2x Buckets with lids</li>
+							<li>2x Wand repair kit</li>
 							<li>Special kit bag</li>
 							<li>Discount voucher</li>
+						</ul>
 					</p>
+
+					<div id="bubble-request" class="button">
+						Get your Bubble Kit
+					</div>
 				</div>
 			</div>
 		</section>
@@ -221,11 +236,33 @@
 						placeholder="Phone number"
 					/>
 
+					<input
+						type="text"
+						name="date"
+						placeholder="Date and Time of event"
+					/>
+
+					<input
+						type="text"
+						name="address"
+						placeholder="Event address"
+					/>
+
+					<input
+						type="text"
+						name="services"
+						placeholder="Service(s) required"
+					/>
+
 					<textarea
 						name="info"
 						placeholder="Any additional information (optional)"></textarea>
 
-					<input type="submit" value="Submit Contact Request" />
+					<input
+						class="button"
+						type="submit"
+						value="Submit Contact Request"
+					/>
 				</form>
 			</div>
 		</section>
@@ -256,6 +293,62 @@
 				</div>
 			</div>
 		</section>
+
+		<div id="bubble-kit-modal" style="display: none">
+			<div class="overlay"></div>
+
+			<form id="bubble-kit">
+				<input
+					required
+					type="text"
+					name="name"
+					placeholder="Name"
+				/>
+
+				<input
+					required
+					type="email"
+					name="email"
+					placeholder="Email address"
+				/>
+
+				<input
+					required
+					type="tel"
+					name="phone"
+					placeholder="Phone number"
+				/>
+
+				<input
+					type="number"
+					name="count"
+					placeholder="Number of kits"
+				/>
+
+				<input
+					required
+					type="text"
+					name="address"
+					placeholder="Delivery address"
+				/>
+
+				<textarea
+					name="info"
+					placeholder="Any additional information (optional)"></textarea>
+
+				<div class="result"></div>
+
+				<input
+					class="button"
+					type="submit"
+					value="Submit Kit Request"
+				/>
+
+				<div class="bubble-close-modal">
+					close
+				</div>
+			</form>
+		</div>
 
 		<script src="js/jquery-2.2.3.min.js"></script>
 		<script src="js/lightbox.min.js"></script>
@@ -289,9 +382,13 @@
 				$submit.addClass('sending');
 
 				var data = {
+					type: 'Contact request',
 					name: $form.find('[name=name]').val(),
 					email: $form.find('[name=email]').val(),
 					phone: $form.find('[name=phone]').val(),
+					date: $form.find('[name=date]').val(),
+					address: $form.find('[name=address]').val(),
+					services: $form.find('[name=services]').val(),
 					info: $form.find('[name=info]').val(),
 				}
 
@@ -316,12 +413,75 @@
 						$submit.text(submitText);
 
 						$result.addClass('error');
-						$result.text('Contract request failed to send');
+						$result.text('Contact request failed to send');
 					}
 				});
 
 				return false;
 			});
+
+			$('#bubble-request').click(function() {
+				$('#bubble-kit-modal').show();
+			});
+
+			$('.bubble-close-modal').click(function() {
+				$('#bubble-kit-modal').hide();
+			});
+
+			$('#bubble-kit').submit(function(e) {
+				e.preventDefault();
+
+				var $form = $(e.target);
+				var $submit = $form.find('[type=submit]');
+				var $result = $form.find('.result');
+
+				// don't process if they spam click
+				if ($submit.hasClass('sending')) return false;
+
+				$result.removeClass('success error');
+
+				var submitText = $submit.text();
+				$submit.text('Sending');
+				$submit.addClass('sending');
+
+				var data = {
+					type: 'Bubble kit request',
+					name: $form.find('[name=name]').val(),
+					email: $form.find('[name=email]').val(),
+					phone: $form.find('[name=phone]').val(),
+					'number of kits': $form.find('[name=count]').val(),
+					address: $form.find('[name=address]').val(),
+					info: $form.find('[name=info]').val(),
+				}
+
+				$.ajax({
+					url: "https://formspree.io/jules@facepaintingplusperth.com",
+					method: "POST",
+					data: data,
+					dataType: "json",
+
+					success: function() {
+						$form[0].reset();
+
+						$submit.removeClass('sending');
+						$submit.text(submitText);
+
+						$result.addClass('success');
+						$result.text('Thank you! Kit request sent');
+					},
+
+					error: function() {
+						$submit.removeClass('sending');
+						$submit.text(submitText);
+
+						$result.addClass('error');
+						$result.text('Kit request failed to send');
+					}
+				});
+
+				return false;
+			});
+
 		</script>
 
 		<script>

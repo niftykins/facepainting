@@ -318,7 +318,6 @@ body.lb-disable-scrolling {
   background: url(../images/prev.png) left 48% no-repeat;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
-  -webkit-transition: opacity 0.6s;
   transition: opacity 0.6s;
 }
 
@@ -334,7 +333,6 @@ body.lb-disable-scrolling {
   background: url(../images/next.png) right 48% no-repeat;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
-  -webkit-transition: opacity 0.6s;
   transition: opacity 0.6s;
 }
 
@@ -394,7 +392,6 @@ body.lb-disable-scrolling {
   outline: none;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   opacity: 0.7;
-  -webkit-transition: opacity 0.2s;
   transition: opacity 0.2s;
 }
 
@@ -546,6 +543,24 @@ section .container {
   margin-left: 50px;
   margin-right: 0;
 }
+.additional .item .bubbles-heading {
+  padding-top: 25px;
+  margin-top: 19.5px;
+  margin-bottom: 6.5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.additional .item .bubbles-heading .pricing-star {
+  margin-left: 16px;
+}
+.additional .item #bubble-request {
+  margin-top: 0.75rem;
+  max-width: 300px;
+}
 .additional .item img {
   float: left;
   margin-right: 50px;
@@ -555,9 +570,6 @@ section .container {
 }
 .additional .item h3 {
   font-size: 28px;
-  padding-top: 25px;
-  margin-top: 19.5px;
-  margin-bottom: 6.5px;
 }
 .additional .item h3.padded {
   padding-top: 50px;
@@ -578,6 +590,10 @@ section .container {
   }
   .additional .item h3 {
     padding-top: 0;
+  }
+  .additional .item ul {
+    padding-left: 0;
+    list-style: none;
   }
 }
 .deal {
@@ -699,29 +715,29 @@ section .container {
   max-width: 300px;
   margin: 20px auto 0;
 }
-.contact form .result {
+form .result {
   display: none;
   margin-bottom: 10px;
   border-radius: 4px;
   padding: 10px 12px;
   color: #fff;
 }
-.contact form .result.success,
-.contact form .result.error {
+form .result.success,
+form .result.error {
   display: block;
 }
-.contact form .result.success {
+form .result.success {
   background-color: #81c784;
 }
-.contact form .result.error {
+form .result.error {
   background-color: #f44336;
 }
-.contact form textarea {
+form textarea {
   resize: vertical;
   min-height: 100px;
 }
-.contact form input,
-.contact form textarea {
+form input,
+form textarea {
   display: block;
   border: 1px solid #433b4b;
   width: 100%;
@@ -731,16 +747,60 @@ section .container {
   background-color: rgba(255,255,255,0.75);
   border-radius: 4px;
 }
-.contact form input:last-child,
-.contact form textarea:last-child {
+form input:last-child,
+form textarea:last-child {
   margin-bottom: 0;
 }
-.contact form input:not([type="submit"]),
-.contact form textarea:not([type="submit"]) {
+form input:not([type="submit"]),
+form textarea:not([type="submit"]) {
   padding: 10px 12px;
 }
-.contact form input[type="submit"],
-.contact form textarea[type="submit"] {
+#bubble-kit-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+#bubble-kit-modal .overlay {
+  position: absolute;
+  background-color: #000;
+  opacity: 0.45;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  width: 100%;
+  height: 100%;
+}
+#bubble-kit-modal form {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  overflow: auto;
+  border-radius: 4px;
+  margin: 5% auto;
+  background-color: #ede7f7;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  width: 95%;
+  max-height: 90%;
+  max-width: calc(300px + 4rem);
+}
+#bubble-kit-modal .bubble-close-modal {
+  padding: 0.35rem 0.75rem;
+  text-decoration: underline;
+  color: #808080;
+  cursor: pointer;
+  display: table;
+  margin: 0 auto;
+}
+.button {
+  display: block;
+  border: 1px solid #433b4b;
+  width: 100%;
+  outline: 0;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 4px;
   line-height: 35px;
   text-align: center;
   background-color: #683a89;
@@ -749,12 +809,49 @@ section .container {
   font-size: 14px;
   cursor: pointer;
 }
-.contact form input[type="submit"]:hover,
-.contact form textarea[type="submit"]:hover {
+.button:hover {
   background-color: #79439f;
 }
-.contact form input[type="submit"].sending,
-.contact form textarea[type="submit"].sending {
+.button.sending {
   cursor: initial;
   background-color: #808080;
+}
+.pricing-star {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+}
+.pricing-star .price {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 18px;
+}
+.pricing-star .star {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+.pricing-star .star:before,
+.pricing-star .star:after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #683a89;
+}
+.pricing-star .star:before {
+  -webkit-transform: rotate(155deg);
+          transform: rotate(155deg);
+}
+.pricing-star .star:after {
+  -webkit-transform: rotate(20deg);
+          transform: rotate(20deg);
 }
