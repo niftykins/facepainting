@@ -86,7 +86,7 @@ section
 	.container
 		max-width 800px
 		margin auto
-		overflow auto
+		overflow visible
 
 .intro
 	$lightContent(true)
@@ -144,10 +144,20 @@ section
 	padding-top 50px
 	padding-bottom 90px
 
+	.bubbles-heading
+		text-align center
+		justify-content center
+		display flex
+		align-items center
+		margin-after 0.83rem
+
+		.pricing-star
+			margin-left 24px
+
 	h2
 		$fancyfont()
 		font-size 36px
-		margin-top 0
+		margin 0
 
 	& > p
 		margin-top 10px
@@ -167,16 +177,6 @@ section
 			float right
 			margin-left 50px
 			margin-right 0
-
-		.bubbles-heading
-			padding-top 25px
-			margin-top 19.5px
-			margin-bottom 6.5px
-			display flex
-			align-items center
-
-			.pricing-star
-				margin-left 16px
 
 		#bubble-request
 			margin-top 0.75rem
@@ -365,6 +365,10 @@ form
 		display table
 		margin 0 auto
 
+	.notes
+		text-align left
+		margin 20px 0 10px
+
 .button
 	display block
 	border 1px solid $dark
@@ -389,7 +393,7 @@ form
 
 .pricing-star
 	position relative
-	width 40px
+	width 60px
 	height @width
 	text-align center
 
@@ -399,7 +403,7 @@ form
 		top 50%
 		transform translate(-50%, -50%)
 		color white
-		font-size 18px
+		font-size 22px
 
 	.star
 		position relative

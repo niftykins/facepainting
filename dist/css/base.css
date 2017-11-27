@@ -427,7 +427,7 @@ section {
 section .container {
   max-width: 800px;
   margin: auto;
-  overflow: auto;
+  overflow: visible;
 }
 .intro {
   color: #433b4b;
@@ -511,11 +511,27 @@ section .container {
 .additional a {
   color: #930ee1;
 }
+.additional .bubbles-heading {
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-after: 0.83rem;
+}
+.additional .bubbles-heading .pricing-star {
+  margin-left: 24px;
+}
 .additional h2 {
   font-family: 'Varela Round', 'Open Sans', sans-serif;
   font-weight: 400 !important;
   font-size: 36px;
-  margin-top: 0;
+  margin: 0;
 }
 .additional > p {
   margin-top: 10px;
@@ -542,20 +558,6 @@ section .container {
   float: right;
   margin-left: 50px;
   margin-right: 0;
-}
-.additional .item .bubbles-heading {
-  padding-top: 25px;
-  margin-top: 19.5px;
-  margin-bottom: 6.5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.additional .item .bubbles-heading .pricing-star {
-  margin-left: 16px;
 }
 .additional .item #bubble-request {
   margin-top: 0.75rem;
@@ -794,6 +796,10 @@ form textarea:not([type="submit"]) {
   display: table;
   margin: 0 auto;
 }
+#bubble-kit-modal .notes {
+  text-align: left;
+  margin: 20px 0 10px;
+}
 .button {
   display: block;
   border: 1px solid #433b4b;
@@ -818,8 +824,8 @@ form textarea:not([type="submit"]) {
 }
 .pricing-star {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   text-align: center;
 }
 .pricing-star .price {
@@ -829,12 +835,12 @@ form textarea:not([type="submit"]) {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: #fff;
-  font-size: 18px;
+  font-size: 22px;
 }
 .pricing-star .star {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
 }
 .pricing-star .star:before,
 .pricing-star .star:after {
