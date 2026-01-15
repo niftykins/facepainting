@@ -1,7 +1,7 @@
 {
   "devDependencies": {},
   "dependencies": {
-    "ecstatic": "^0.5.8",
+    "ecstatic": "^4.1.4",
     "gulp": "^3.8.10",
     "gulp-autoprefixer": "^2.1.0",
     "gulp-livereload": "^3.0.2",
